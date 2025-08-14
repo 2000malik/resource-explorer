@@ -11,7 +11,7 @@ type ErrorResponseData = {
 };
 type CharacterQueryResponseType = {
   info: PaginationType;
-  results: CharacterType;
+  results: CharacterType[];
 };
 type PaginationType = {
   count?: number;
