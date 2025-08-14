@@ -5,6 +5,8 @@ import { ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 //
 import "./globals.css";
+import theme from "../theme";
+import TanStackProviders from "./tanstack-providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,7 +44,9 @@ export default function RootLayout({
           closeOnClick={true}
         />
         <AppRouterCacheProvider>
-          <ThemeProvider theme={{  }}>{children}</ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <TanStackProviders>{children}</TanStackProviders>
+          </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
