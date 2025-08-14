@@ -9,9 +9,12 @@ export const useQueryParams = (path?: string) => {
   const searchParams = useSearchParams();
 
   const createQueryString = useCallback(
-    (name: string, value: string) => {
+    (paramsToUpdate: Record<string, string>) => {
       const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
+
+      Object.entries(paramsToUpdate).forEach(([key, value]) => {
+        params.set(key, value);
+      });
 
       return params.toString();
     },
@@ -19,12 +22,16 @@ export const useQueryParams = (path?: string) => {
   );
 
   const setQueryParams = (key: string, value: string) => {
-    router.push(path ?? pathname + "?" + createQueryString(key, value));
+    router.push(path ?? `${pathname}?${createQueryString({ [key]: value })}`);
   };
 
-  const getQueryParams = (value: string) => {
-    return searchParams.get(value);
+  const setMultipleQueryParams = (params: Record<string, string>) => {
+    router.push(path ?? `${pathname}?${createQueryString(params)}`);
   };
 
-  return { setQueryParams, getQueryParams };
+  const getQueryParams = (key: string) => {
+    return searchParams.get(key);
+  };
+
+  return { setQueryParams, setMultipleQueryParams, getQueryParams };
 };

@@ -11,12 +11,13 @@ export function CharacterCard({ character }: { character: CharacterType }) {
   const isFav = favorites.includes(character.id);
 
   return (
-    <Card>
+    <Card sx={{ minWidth: 275 }}>
       <CardMedia
         component="img"
         height="200"
         image={character?.image}
         alt={character?.name}
+       
       />
       <CardContent>
         <Typography variant="h6" sx={{ color: colors.grey.secondary }}>

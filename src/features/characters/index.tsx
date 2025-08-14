@@ -10,15 +10,15 @@ import {
   Typography,
 } from "@/src/components";
 import { colors } from "@/src/theme/color";
+import CharacterFilters from "@/src/components/character/filters";
 
 export const Characters: React.FC = () => {
   const { getQueryParams } = useQueryParams();
   const page = getQueryParams("page") || "";
   const name = getQueryParams("name") || "";
   const gender = getQueryParams("gender") || "";
-  const type = getQueryParams("type") || "";
+
   const status = getQueryParams("status") || "";
-  const species = getQueryParams("species") || "";
 
   const { fetchCharacters } = useGetCharacters();
   const {
@@ -26,7 +26,7 @@ export const Characters: React.FC = () => {
     isLoading,
     error,
     isError,
-  } = fetchCharacters({ page, name, gender, type, status, species });
+  } = fetchCharacters({ page, name, gender, status });
   const noResults =
     !isLoading && charactersData?.results?.length === 0 && !error && !isError;
   return (
@@ -39,6 +39,7 @@ export const Characters: React.FC = () => {
         >
           Resource Explorer
         </Typography>
+        <CharacterFilters />
         <Container>
           {isLoading && <LoadingSkeleton />}
           <Grid container spacing={2}>
