@@ -4,6 +4,7 @@ import { useGetCharacters, useQueryParams } from "@/src/hooks";
 import { Box, Container, Grid, Stack } from "@mui/material";
 import {
   CharacterCard,
+  FallBack,
   LoadingSkeleton,
   PaginationControls,
   Typography,
@@ -26,7 +27,8 @@ export const Characters: React.FC = () => {
     error,
     isError,
   } = fetchCharacters({ page, name, gender, type, status, species });
-
+  const noResults =
+    !isLoading && charactersData?.results?.length === 0 && !error && !isError;
   return (
     <Container sx={{ marginBlock: 4 }}>
       <Stack gap={5}>
@@ -40,18 +42,23 @@ export const Characters: React.FC = () => {
         <Container>
           {isLoading && <LoadingSkeleton />}
           <Grid container spacing={2}>
-            {charactersData?.results?.map?.((char) => (
-              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={char.id}>
-                <CharacterCard character={char} />
+            {noResults ? (
+              <FallBack />
+            ) : (
+              <Grid container spacing={2}>
+                {charactersData?.results?.map?.((char) => (
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }} key={char.id}>
+                    <CharacterCard character={char} />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
+            )}
           </Grid>
         </Container>
-        {charactersData?.results && (
+        {charactersData?.results && charactersData.results.length > 0 && (
           <PaginationControls
             totalPages={charactersData.info.pages || 1}
             currentPage={Number(page)}
-            
           />
         )}
       </Stack>
