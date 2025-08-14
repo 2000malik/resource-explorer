@@ -1,8 +1,7 @@
 import React from "react";
 import { Pagination, Box } from "@mui/material";
-import { useRouter } from "next/navigation";
+//
 import { useQueryParams } from "@/src/hooks";
-// import { useRouter } from "next/router";
 
 interface PaginationControlsProps {
   totalPages?: number | null;
@@ -13,7 +12,6 @@ export const PaginationControls: React.FC<PaginationControlsProps> = ({
   totalPages = 1,
   currentPage = 1,
 }) => {
-  const router = useRouter();
   const { setQueryParams } = useQueryParams();
   const handleChange = (_: React.ChangeEvent<unknown>, page: number) => {
     setQueryParams("page", page.toString());
