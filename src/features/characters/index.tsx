@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useGetCharacters, useQueryParams } from "@/src/hooks";
-import { Box, Container, Grid, Stack } from "@mui/material";
+import { Box, Container, Grid, Pagination, Stack } from "@mui/material";
 import { CharacterCard, LoadingSkeleton, Typography } from "@/src/components";
 import { colors } from "@/src/theme/color";
 
@@ -42,6 +42,16 @@ export const Characters: React.FC = () => {
             ))}
           </Grid>
         </Container>
+        {charactersData?.results && (
+          <Pagination
+            sx={{ mt: 3 }}
+            count={charactersData.info.pages || 1}
+            page={Number(page)}
+            //   onChange={(_, val) =>
+            //     router.push({ pathname: "/", query: { ...router.query, page: val } })
+            //   }
+          />
+        )}
       </Stack>
     </Container>
   );
