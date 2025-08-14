@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 export const useGetCharacters = () => {
   // Get all Characters
   const getAllCharacters = async ({
-    page = "page=1",
+    page = "1",
     name = "",
     gender = "",
     species = "",
@@ -15,7 +15,7 @@ export const useGetCharacters = () => {
     status = "",
   }: CharacterQueryProps = {}): Promise<CharacterQueryResponseType> => {
     const queryParameters: string[] = [
-      page,
+      `page=${page}`,
       status && `status=${status}`,
       name && `name=${name}`,
       gender && `gender=${gender}`,
@@ -36,7 +36,7 @@ export const useGetCharacters = () => {
     }
   };
   const fetchCharacters = ({
-    page = "page=1",
+    page = "1",
     name,
     gender,
     type,
