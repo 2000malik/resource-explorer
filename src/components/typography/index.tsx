@@ -24,6 +24,7 @@ export const Typography: React.FC<Props> = ({
         WebkitLineClamp: noOfLines,
         WebkitBoxOrient: "vertical",
         typography: typography,
+          fontFamily:"Fira Sans"
       }}
       {...resProps}
     >

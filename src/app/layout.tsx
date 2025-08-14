@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fira_Sans } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
@@ -8,16 +8,10 @@ import "./globals.css";
 import theme from "../theme";
 import TanStackProviders from "./tanstack-providers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const FiraSansText = Fira_Sans({
   subsets: ["latin"],
+  weight: "400",
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   title: "Resource Explorer App",
   description: "",
@@ -30,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${FiraSansText.className} `}>
         <ToastContainer
           style={{
             fontSize: 16,
