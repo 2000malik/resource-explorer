@@ -50,5 +50,32 @@ export const useGetCharacters = () => {
     });
   };
 
-  return { fetchCharacters };
+  //  get single character
+
+  const getSingleCharacter = async ({
+    id,
+  }: {
+    id: string;
+  }): Promise<CharacterType> => {
+    try {
+      const res = await axios.get(`${BASE_URL}/character/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return res.data;
+    } catch (error) {
+      toast.error("Failed to fetch character details");
+      throw new Error("Failed to fetch character details");
+    }
+  };
+  const useCharacterDetails = (id: string) => {
+    return useQuery<CharacterType>({
+      queryKey: ["username", id],
+      queryFn: async () => getSingleCharacter({ id }),
+      enabled: !!id,
+    });
+  };
+
+  return { fetchCharacters, useCharacterDetails };
 };
