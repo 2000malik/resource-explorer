@@ -6,24 +6,41 @@ import {
   Chip,
   IconButton,
   Stack,
+  Button,
 } from "@mui/material";
 import { useFavorites } from "@/src/store/useFavorite";
 import { colors } from "@/src/theme/color";
 import { Typography } from "@/src/components";
+import { useRouter } from "next/navigation";
 
 export default function CharacterDetail({
   character,
 }: {
   character: CharacterType;
 }) {
+  const router = useRouter();
   const { favorites, toggleFavorite } = useFavorites();
   const isFav = favorites.includes(character.id);
 
   return (
     <Stack spacing={4}>
-      <Typography variant="lg" fontWeight={600}>
-        Name: {character.name}
-      </Typography>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Button
+          onClick={() => router.back()}
+          sx={{
+            width: "fit-content",
+            color: colors.black.main,
+            fontWeight: 600,
+            fontSize: 16,
+            textTransform: "none",
+            "&:hover": { backgroundColor: "transparent" },
+          }}
+          startIcon={<span style={{ fontSize: "1.25rem" }}>{`<`}</span>}
+        />
+        <Typography variant="lg" fontWeight={600}>
+          Name: {character.name}
+        </Typography>
+      </Box>
 
       <Card
         sx={{
@@ -78,8 +95,8 @@ export default function CharacterDetail({
                 color: colors.white,
                 bgcolor: colors.primary.main,
                 boxShadow: 2,
-                fontSize:12,
-                fontWeight:600
+                fontSize: 12,
+                fontWeight: 600,
               }}
             />
             <Chip
@@ -88,8 +105,8 @@ export default function CharacterDetail({
                 bgcolor: colors.white,
                 color: colors.primary.main,
                 boxShadow: 2,
-                fontSize:12,
-                fontWeight:600
+                fontSize: 12,
+                fontWeight: 600,
               }}
             />
             <Chip
@@ -98,8 +115,8 @@ export default function CharacterDetail({
                 bgcolor: colors.white,
                 color: colors.primary.main,
                 boxShadow: 2,
-                fontSize:12,
-                fontWeight:600
+                fontSize: 12,
+                fontWeight: 600,
               }}
             />
           </Stack>
