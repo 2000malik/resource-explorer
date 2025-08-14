@@ -36,7 +36,7 @@ type CharacterType = {
   type: string;
   gender: string;
   origin: Origin;
-  location: Location;
+  location: LocationType;
   image: string;
   episode: string[];
   url: string;
@@ -46,7 +46,7 @@ type Origin = {
   name: string;
   url: string;
 };
-type Location = {
+type LocationType = {
   name: string;
   url: string;
 };
