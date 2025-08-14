@@ -9,14 +9,25 @@ type ErrorResponseData = {
   message: string;
   error?: string;
 };
-
+type CharacterQueryResponseType = {
+  info: PaginationType;
+  results: CharacterType;
+};
 type PaginationType = {
-  count: number;
-  pages: number;
-  next: string | null;
-  prev: string | null;
+  count?: number;
+  pages?: number;
+  next?: string | null;
+  prev?: string | null;
 };
 
+type CharacterQueryProps = {
+  gender?: string;
+  name?: string;
+  page?: string;
+  species?: string;
+  status?: string;
+  type?: string;
+};
 type CharacterType = {
   id: number;
   name: string;
