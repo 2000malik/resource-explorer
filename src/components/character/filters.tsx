@@ -37,11 +37,9 @@ export default function CharacterFilters() {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchTerm]);
-  console.log({ debouncedSearchTerm });
 
   return (
     <Box display="flex" gap={2} mb={3} flexWrap="wrap">
-      {/* Search */}
       <TextField
         label="Search"
         variant="outlined"
@@ -50,7 +48,6 @@ export default function CharacterFilters() {
         size="small"
       />
 
-      {/* Status Filter */}
       <FormControl size="small" sx={{ minWidth: 120 }}>
         <InputLabel>Status</InputLabel>
         <Select
@@ -72,7 +69,6 @@ export default function CharacterFilters() {
         </Select>
       </FormControl>
 
-      {/* Sort */}
       <FormControl size="small" sx={{ minWidth: 160 }}>
         <InputLabel>Sort</InputLabel>
         <Select

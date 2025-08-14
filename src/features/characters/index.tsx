@@ -11,13 +11,14 @@ import {
 } from "@/src/components";
 import { colors } from "@/src/theme/color";
 import CharacterFilters from "@/src/components/character/filters";
+import { sortCharacters } from "@/src/utils";
 
 export const Characters: React.FC = () => {
   const { getQueryParams } = useQueryParams();
   const page = getQueryParams("page") || "";
   const name = getQueryParams("name") || "";
   const gender = getQueryParams("gender") || "";
-
+  const sort = getQueryParams("sort") || "";
   const status = getQueryParams("status") || "";
 
   const { fetchCharacters } = useGetCharacters();
@@ -29,6 +30,11 @@ export const Characters: React.FC = () => {
   } = fetchCharacters({ page, name, gender, status });
   const noResults =
     !isLoading && charactersData?.results?.length === 0 && !error && !isError;
+  let sortedResults = charactersData?.results || [];
+
+  if (sort) {
+    sortedResults = sortCharacters(sortedResults, sort);
+  }
   return (
     <Container sx={{ marginBlock: 4 }}>
       <Stack gap={5}>
@@ -47,7 +53,7 @@ export const Characters: React.FC = () => {
               <FallBack />
             ) : (
               <Grid container spacing={2}>
-                {charactersData?.results?.map?.((char) => (
+                {sortedResults?.map?.((char) => (
                   <Grid size={{ xs: 12, sm: 6, md: 4 }} key={char.id}>
                     <CharacterCard character={char} />
                   </Grid>
