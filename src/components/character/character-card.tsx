@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { useFavorites } from "@/src/store/useFavorite";
 
-export default function CharacterCard({
+export  function CharacterCard({
   character,
 }: {
   character: CharacterType;
